@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { CinematicCarousel } from "@/components/media/cinematic-carousel";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/ui/container";
+import { getPageCarousel } from "@/lib/content/carousels";
 import { getExperiences } from "@/lib/content/supporting";
 
 export const metadata = createPageMetadata({
@@ -10,12 +12,19 @@ export const metadata = createPageMetadata({
 });
 
 export default async function ExperiencesPage() {
-  const experiences = await getExperiences();
+  const [experiences, carousel] = await Promise.all([getExperiences(), getPageCarousel("experiences")]);
 
   return (
     <main id="main-content" className="inner-page">
-      <section className="editorial-hero editorial-hero--forest">
-        <Container>
+      <section className="cinematic-page-hero">
+        <CinematicCarousel
+          className="cinematic-page-hero__media"
+          slides={carousel.slides}
+          intervalMs={carousel.intervalMs}
+          priority
+          label="Experience photography"
+        />
+        <Container className="cinematic-page-hero__content">
           <p className="eyebrow eyebrow--light">Experience</p>
           <h1>The stay should be more than the room.</h1>
           <p>
