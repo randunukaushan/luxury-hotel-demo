@@ -23,47 +23,47 @@ Compares leading global luxury hotel and resort websites and records patterns th
 Documents the initial prospect's verified accommodation signals, amenities, location, guest sentiment, differentiators, limitations, and positioning.
 
 ### 2.4 Brand and Visual Direction
-**Status: Planned**
+**Status: Complete**
 
 Defines mood, visual language, colour system, typography, photography treatment, spacing, layout principles, iconography, and motion rules.
 
 ### 2.5 Information Architecture
-**Status: Planned**
+**Status: Complete**
 
 Defines sitemap, navigation, page hierarchy, room detail structure, gallery, dining, experiences, location, offers, contact, FAQ, and booking pathways.
 
 ### 2.6 UX and Conversion Strategy
-**Status: Planned**
+**Status: Complete**
 
 Defines user journeys, conversion points, direct-enquiry flows, mobile sticky actions, trust signals, reviews, calls to action, and friction reduction.
 
 ### 2.7 Feature Specification
-**Status: Planned**
+**Status: Complete**
 
 Defines the complete feature set, priorities, states, interactions, responsive behaviour, forms, gallery behaviour, room cards, booking/enquiry components, and admin-editable content requirements.
 
 ### 2.8 Content Strategy
-**Status: Planned**
+**Status: Complete**
 
 Defines page-by-page copy requirements, tone, photography needs, verified claims, review usage, calls to action, and asset requirements from the client.
 
 ### 2.9 Technical Architecture
-**Status: Planned**
+**Status: Complete**
 
 Defines framework, component architecture, content model, CMS, form handling, analytics, integrations, deployment, security basics, and maintainability.
 
 ### 2.10 SEO, Performance and Accessibility
-**Status: Planned**
+**Status: Complete**
 
 Defines metadata, structured data, image optimisation, Core Web Vitals targets, caching, accessibility requirements, semantic structure, and reduced-motion behaviour.
 
 ### 2.11 Demo Build Plan
-**Status: Planned**
+**Status: Complete**
 
 Breaks implementation into milestones and acceptance criteria so Codex can implement methodically without design drift.
 
 ### 2.12 Client Handoff and Commercial Package
-**Status: Planned**
+**Status: Complete**
 
 Defines final deliverables, exclusions, hosting/domain responsibilities, change-request boundaries, payment milestones, and presentation of the LKR 120,000 package.
 
@@ -96,3 +96,11 @@ Unverified amenities, awards, room facts, direct-booking perks, or experiences m
 
 ### 4.3 Scope Before Coding
 Codex implementation starts from approved documentation and acceptance criteria so feature scope and visual decisions do not drift during development.
+
+## 5. Documentation Phase Status
+
+### 5.1 Completion
+All planned pre-implementation documents are complete and committed to the repository.
+
+### 5.2 Next Phase
+The next phase is implementation according to `Demo-Build-Plan.md`, starting with application foundation, design tokens, and the global shell.
