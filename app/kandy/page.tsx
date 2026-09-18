@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { CinematicCarousel } from "@/components/media/cinematic-carousel";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/ui/container";
+import { getPageCarousel } from "@/lib/content/carousels";
 import { getAttractions } from "@/lib/content/supporting";
 import { conceptImages } from "@/lib/media/concept-images";
 
@@ -11,12 +13,19 @@ export const metadata = createPageMetadata({
 });
 
 export default async function KandyPage() {
-  const attractions = await getAttractions();
+  const [attractions, carousel] = await Promise.all([getAttractions(), getPageCarousel("kandy")]);
 
   return (
     <main id="main-content" className="inner-page">
-      <section className="editorial-hero editorial-hero--lake">
-        <Container>
+      <section className="cinematic-page-hero">
+        <CinematicCarousel
+          className="cinematic-page-hero__media"
+          slides={carousel.slides}
+          intervalMs={carousel.intervalMs}
+          priority
+          label="Kandy destination photography"
+        />
+        <Container className="cinematic-page-hero__content">
           <p className="eyebrow eyebrow--light">Kandy · Sri Lanka</p>
           <h1>Close enough to explore. Far enough to breathe.</h1>
           <p>
