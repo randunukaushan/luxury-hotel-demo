@@ -17,7 +17,7 @@ This repository is the canonical workspace for research, product/design document
 
 **Phase 2 — Implementation in Progress**
 
-The pre-implementation documentation set is complete. The Next.js application foundation, first design-system implementation, and premium homepage vertical slice are now implemented and passing CI.
+The documentation set is complete. The application foundation, design system, homepage, CMS foundation, Stay listing, and dynamic Room Detail routes are implemented and passing CI.
 
 ## 4. Documentation
 
@@ -44,18 +44,35 @@ See `docs/Documentation-Roadmap.md` for the full sequence and status.
 
 - [x] Application foundation
 - [x] Design system implementation
-- [ ] CMS foundation
+- [x] CMS foundation
 - [x] Homepage vertical slice
-- [ ] Stay and room pages
+- [x] Stay and room pages
 - [ ] Supporting pages
 - [ ] Availability/contact forms
 - [ ] SEO and analytics implementation
 - [ ] Performance/accessibility QA
 - [ ] Client-ready deployment
 
-## 7. Quality Status
+## 7. CMS Status
 
-### 7.1 Automated CI
+### 7.1 Implemented
+
+The project now includes:
+
+- Sanity dependencies and configuration;
+- room and supporting content schemas;
+- GROQ room queries;
+- a typed content repository;
+- Sanity image CDN support;
+- safe demo fallback content.
+
+### 7.2 Live Connection
+
+The site intentionally uses fallback demo content until a real Sanity project ID and dataset are configured. Once those environment variables are supplied, the Stay and Room Detail routes can read published CMS content without changing page architecture.
+
+## 8. Quality Status
+
+### 8.1 Automated CI
 
 Current GitHub Actions quality gate passes:
 
@@ -64,21 +81,21 @@ Current GitHub Actions quality gate passes:
 - TypeScript typecheck;
 - production build.
 
-### 7.2 Current Demo Safety
+### 8.2 Current Demo Safety
 
-The current homepage uses art-directed CSS concept visuals instead of unlicensed property photography. Unverified room names, capacities, contact details, offers, and booking claims are deliberately not presented as confirmed production facts.
+Current room categories and visuals are explicitly labelled as concept content where the property has not confirmed definitive room inventory. Unlicensed property photography is not committed.
 
-## 8. Working Rules
+## 9. Working Rules
 
-### 8.1 Documentation First
+### 9.1 Documentation First
 Implementation must follow the repository documentation. If a major product, design, commercial, or technical decision changes, update the relevant document before coding.
 
-### 8.2 Verified Property Content
+### 9.2 Verified Property Content
 Do not publish unverified room facts, amenities, offers, ratings, or experiences as factual claims.
 
-### 8.3 Original Design
+### 9.3 Original Design
 Reference sites inform principles only. Do not clone their layouts, copy, or proprietary assets.
 
-## 9. Next Step
+## 10. Next Step
 
-Continue with **CMS Foundation**, then implement the **Stay and Room Detail** vertical slice according to `docs/Demo-Build-Plan.md`.
+Continue with **Supporting Pages** — Experiences, Dining, Gallery, Kandy, Offers, FAQ and Contact — then implement the real availability/contact form flow.
