@@ -33,7 +33,9 @@ const principles = [
   ["Dining", "Breakfast and food receive the visual weight guests already respond to."],
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const rooms = await getRooms();
+
   return (
     <main id="main-content">
       <section id="top" className="hero" aria-labelledby="hero-title">
