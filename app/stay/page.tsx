@@ -1,7 +1,9 @@
+import { CinematicCarousel } from "@/components/media/cinematic-carousel";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
 import { RoomCard } from "@/components/room/room-card";
 import { Container } from "@/components/ui/container";
+import { getPageCarousel } from "@/lib/content/carousels";
 import { getRooms } from "@/lib/content/rooms";
 
 export const metadata = createPageMetadata({
@@ -11,12 +13,19 @@ export const metadata = createPageMetadata({
 });
 
 export default async function StayPage() {
-  const rooms = await getRooms();
+  const [rooms, carousel] = await Promise.all([getRooms(), getPageCarousel("stay")]);
 
   return (
     <main id="main-content" className="inner-page">
-      <section className="stay-hero">
-        <Container>
+      <section className="cinematic-page-hero">
+        <CinematicCarousel
+          className="cinematic-page-hero__media"
+          slides={carousel.slides}
+          intervalMs={carousel.intervalMs}
+          priority
+          label="Stay photography"
+        />
+        <Container className="cinematic-page-hero__content stay-hero__content">
           <p className="eyebrow eyebrow--light">Stay · Kandy</p>
           <div className="stay-hero__grid">
             <h1>Choose the feeling before the room number.</h1>
