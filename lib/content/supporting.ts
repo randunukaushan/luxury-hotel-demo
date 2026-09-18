@@ -1,4 +1,5 @@
 import { sanityClient } from "@/sanity/lib/client";
+import { conceptImages } from "@/lib/media/concept-images";
 import {
   attractionsQuery,
   diningQuery,
@@ -59,6 +60,7 @@ const demoExperiences: Experience[] = [
     summary:
       "A destination-led content pattern for culture, landscapes and independently visited Kandy highlights. Final property-arranged activities remain unpublished until verified.",
     verified: true,
+    imageUrl: conceptImages.kandyCity.src,
   },
   {
     title: "Slow mornings",
@@ -67,6 +69,7 @@ const demoExperiences: Experience[] = [
     summary:
       "A concept story showing how real breakfast, views and morning routines can become a memorable reason to stay once the property supplies final content.",
     verified: false,
+    imageUrl: conceptImages.breakfastTerrace.src,
   },
   {
     title: "Nature around Victoria",
@@ -75,6 +78,7 @@ const demoExperiences: Experience[] = [
     summary:
       "An editorial direction for the wider landscape and quieter setting, without inventing a resort-operated excursion.",
     verified: true,
+    imageUrl: conceptImages.heroTea.src,
   },
 ];
 
@@ -82,9 +86,43 @@ const demoDining: Dining[] = [
   {
     title: "Dining, given room to matter",
     summary:
-      "The final page will present verified breakfast, cuisine, dietary support, opening hours and real food photography. For now this is a safe private-demo content shell.",
+      "The final page will present verified breakfast, cuisine, dietary support, opening hours and real property food photography. This private demo uses licensed concept imagery to show the intended premium presentation.",
     cuisine: "Final cuisine details pending property confirmation",
     openingHours: "Hours to be confirmed",
+    imageUrl: conceptImages.dining.src,
+  },
+];
+
+const demoGalleryItems: GalleryItem[] = [
+  {
+    alt: conceptImages.heroTea.alt,
+    category: "Hill Country",
+    imageUrl: conceptImages.heroTea.src,
+  },
+  {
+    alt: conceptImages.roomPanoramic.alt,
+    category: "Stay Concept",
+    imageUrl: conceptImages.roomPanoramic.src,
+  },
+  {
+    alt: conceptImages.breakfastTerrace.alt,
+    category: "Dining Concept",
+    imageUrl: conceptImages.breakfastTerrace.src,
+  },
+  {
+    alt: conceptImages.kandyCity.alt,
+    category: "Kandy",
+    imageUrl: conceptImages.kandyCity.src,
+  },
+  {
+    alt: conceptImages.roomNature.alt,
+    category: "Stay Concept",
+    imageUrl: conceptImages.roomNature.src,
+  },
+  {
+    alt: conceptImages.hillLake.alt,
+    category: "Landscape",
+    imageUrl: conceptImages.hillLake.src,
   },
 ];
 
@@ -110,7 +148,7 @@ const demoFaqs: Faq[] = [
   {
     question: "Are the images on this demo the hotel's real photos?",
     answer:
-      "Not yet. The current visual placeholders avoid using unlicensed third-party hotel photography. Client-owned or licensed media will replace them before public launch.",
+      "Not yet. The private demo uses licensed stock concept photography that is clearly separate from the property's real imagery. Client-owned or approved property media will replace it before public launch.",
     sortOrder: 40,
   },
 ];
@@ -210,14 +248,15 @@ export async function getFaqs(): Promise<Faq[]> {
 }
 
 export async function getGalleryItems(): Promise<GalleryItem[]> {
-  const data = await safeFetch<SanityGallery[]>(galleryQuery, []);
-  return data
+  const data = await safeFetch<SanityGallery[]>(galleryQuery, demoGalleryItems);
+  const normalized = data
     .filter((item) => item.imageUrl)
     .map((item) => ({
-      alt: item.alt || "Property gallery image",
-      category: item.category || "Property",
+      alt: item.alt || "Concept gallery image",
+      category: item.category || "Concept",
       imageUrl: item.imageUrl,
     }));
+  return normalized.length ? normalized : demoGalleryItems;
 }
 
 export async function getAttractions(): Promise<Attraction[]> {
