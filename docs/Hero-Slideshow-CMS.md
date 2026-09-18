@@ -3,7 +3,7 @@
 ## 1. Purpose
 
 ### 1.1 Goal
-Allow the hotel team to upload, remove, reorder, and time the rotating hero photography used on the Home, Dining, Gallery, Kandy, and Offers pages.
+Allow the hotel team to upload, remove, reorder, and time the rotating hero photography used on the Home, Stay, Experience, Dining, Gallery, Kandy, and Offers pages.
 
 ## 2. Current Behaviour
 
@@ -19,6 +19,7 @@ After Sanity is connected, a published `Hero slideshow` document for a page repl
 The CMS supports:
 
 - Home
+- Stay
 - Experience
 - Dining
 - Gallery
@@ -38,7 +39,7 @@ In Sanity Studio:
 1. create a **Hero slideshow** document;
 2. choose the page;
 3. set the auto-rotate interval;
-4. upload one or more photos;
+4. upload one or more photos (the current demo uses five per page);
 5. add useful alternative text;
 6. drag photos to reorder them;
 7. publish the document.
