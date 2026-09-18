@@ -23,10 +23,11 @@ export function GalleryGrid({ items }: GalleryGridProps) {
   const close = useCallback(() => {
     const previousIndex = selectedIndex;
     setSelectedIndex(null);
+
     if (previousIndex !== null) {
       window.setTimeout(() => triggerRefs.current[previousIndex]?.focus(), 0);
     }
-  }, [close, move, selectedIndex]);
+  }, [selectedIndex]);
 
   const move = useCallback(
     (direction: number) => {
@@ -50,11 +51,12 @@ export function GalleryGrid({ items }: GalleryGridProps) {
     };
 
     window.addEventListener("keydown", onKeyDown);
+
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [selectedIndex]);
+  }, [close, move, selectedIndex]);
 
   return (
     <>

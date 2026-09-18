@@ -1,4 +1,6 @@
-import { EnquiryForm } from "@/components/forms/enquiry-form";\nimport { Container } from "@/components/ui/container";\nimport { getRooms } from "@/lib/content/rooms";
+import { EnquiryForm } from "@/components/forms/enquiry-form";
+import { Container } from "@/components/ui/container";
+import { getRooms } from "@/lib/content/rooms";
 
 const stays = [
   {
