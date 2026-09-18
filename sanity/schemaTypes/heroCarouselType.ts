@@ -13,6 +13,7 @@ export const heroCarouselType = defineType({
       options: {
         list: [
           { title: "Home", value: "home" },
+          { title: "Experience", value: "experiences" },
           { title: "Dining", value: "dining" },
           { title: "Gallery", value: "gallery" },
           { title: "Kandy", value: "kandy" },
