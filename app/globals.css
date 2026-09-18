@@ -977,3 +977,185 @@ textarea { font:inherit; }
     min-height: 22rem;
   }
 }
+
+
+/* Cinematic rotating hero system */
+.cinematic-carousel {
+  position: relative;
+  overflow: hidden;
+  background: var(--forest);
+  min-height: 100%;
+}
+.cinematic-carousel__slides {
+  position: absolute;
+  inset: 0;
+}
+.cinematic-carousel__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.025);
+  transition:
+    opacity 1s var(--ease),
+    transform 7s linear;
+  pointer-events: none;
+}
+.cinematic-carousel__slide--active {
+  opacity: 1;
+  transform: scale(1);
+}
+.cinematic-carousel__image {
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.82) contrast(.99) brightness(.78);
+}
+.cinematic-carousel::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(8,15,12,.7) 0%, rgba(8,15,12,.35) 42%, rgba(8,15,12,.08) 72%),
+    linear-gradient(0deg, rgba(8,15,12,.48) 0%, transparent 48%);
+  pointer-events: none;
+}
+.cinematic-carousel__controls {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: 1.35rem;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  padding: .45rem .65rem;
+  border: 1px solid rgba(250,248,243,.18);
+  background: rgba(15,24,21,.38);
+  backdrop-filter: blur(10px);
+}
+.cinematic-carousel__controls > button {
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  background: transparent;
+  color: var(--linen);
+  cursor: pointer;
+}
+.cinematic-carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+}
+.cinematic-carousel__dots button {
+  width: 1.6rem;
+  height: 2px;
+  padding: 0;
+  border: 0;
+  background: rgba(250,248,243,.35);
+  cursor: pointer;
+  transition: width .3s var(--ease), background .3s var(--ease);
+}
+.cinematic-carousel__dots button.is-active {
+  width: 2.6rem;
+  background: var(--linen);
+}
+
+.hero__carousel {
+  position: absolute;
+  inset: 0;
+}
+.hero__carousel.cinematic-carousel::after {
+  background:
+    linear-gradient(90deg, rgba(7,13,11,.72) 0%, rgba(7,13,11,.34) 45%, rgba(7,13,11,.09) 74%),
+    linear-gradient(0deg, rgba(7,13,11,.58), transparent 55%);
+}
+.hero__carousel .cinematic-carousel__image {
+  object-position: center 55%;
+}
+.hero__carousel .cinematic-carousel__controls {
+  left: auto;
+  right: var(--gutter);
+  transform: none;
+  bottom: 2rem;
+}
+
+.cinematic-page-hero {
+  min-height: clamp(32rem, 72vh, 48rem);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  color: var(--linen);
+  background: var(--forest);
+}
+.cinematic-page-hero__media {
+  position: absolute;
+  inset: 0;
+}
+.cinematic-page-hero__content {
+  position: relative;
+  z-index: 3;
+  padding-top: clamp(10rem, 15vw, 14rem);
+  padding-bottom: clamp(5rem, 9vw, 8rem);
+}
+.cinematic-page-hero__content h1 {
+  max-width: 12ch;
+  margin: 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(4rem, 8vw, 8.8rem);
+  line-height: .86;
+  font-weight: 500;
+  letter-spacing: -.045em;
+}
+.cinematic-page-hero__content > p:last-of-type {
+  max-width: 41rem;
+  margin: 2rem 0 0;
+  color: rgba(250,248,243,.78);
+}
+.cinematic-page-hero__media .cinematic-carousel__controls {
+  left: auto;
+  right: var(--gutter);
+  transform: none;
+  bottom: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .hero__carousel .cinematic-carousel__image,
+  .cinematic-page-hero__media .cinematic-carousel__image {
+    object-position: 58% center;
+  }
+
+  .hero__carousel .cinematic-carousel__controls,
+  .cinematic-page-hero__media .cinematic-carousel__controls {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .cinematic-carousel__controls {
+    gap: .45rem;
+    padding: .35rem .45rem;
+  }
+
+  .cinematic-carousel__dots button {
+    width: 1rem;
+  }
+
+  .cinematic-carousel__dots button.is-active {
+    width: 1.8rem;
+  }
+
+  .cinematic-page-hero {
+    min-height: 78svh;
+  }
+
+  .cinematic-page-hero__content h1 {
+    font-size: clamp(3.7rem,16vw,5.6rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-carousel__slide {
+    transition: opacity .2s linear;
+    transform: none;
+  }
+}
