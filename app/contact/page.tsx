@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/forms/enquiry-form";
 import { Container } from "@/components/ui/container";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Contact",
-  description: "Contact the property through the premium website concept.",
-};
+  description: "Contact the property through the premium hotel website enquiry experience.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

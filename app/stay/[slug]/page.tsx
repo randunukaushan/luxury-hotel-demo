@@ -5,6 +5,7 @@ import { RoomVisual } from "@/components/room/room-visual";
 import { Container } from "@/components/ui/container";
 import { demoRooms } from "@/lib/content/demo-rooms";
 import { getRoomBySlug } from "@/lib/content/rooms";
+import { createPageMetadata } from "@/lib/seo/metadata";
 
 type RoomPageProps = {
   params: Promise<{ slug: string }>;
@@ -20,10 +21,11 @@ export async function generateMetadata({ params }: RoomPageProps): Promise<Metad
 
   if (!room) return { title: "Room not found" };
 
-  return {
+  return createPageMetadata({
     title: room.title,
     description: room.summary,
-  };
+    path: `/stay/${room.slug}`,
+  });
 }
 
 export default async function RoomPage({ params }: RoomPageProps) {

@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/ui/container";
 import { getAttractions } from "@/lib/content/supporting";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Kandy",
-  description: "Destination storytelling and location context for a scenic stay near Kandy.",
-};
+  description: "Discover destination context for a scenic stay near Kandy, Sri Lanka.",
+  path: "/kandy",
+});
 
 export default async function KandyPage() {
   const attractions = await getAttractions();

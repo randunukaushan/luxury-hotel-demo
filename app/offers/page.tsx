@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { getOffers } from "@/lib/content/supporting";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Offers",
-  description: "Current direct offers and packages, once approved by the property.",
-};
+  description: "Explore current property-approved direct offers and stay packages.",
+  path: "/offers",
+});
 
 export default async function OffersPage() {
   const offers = await getOffers();

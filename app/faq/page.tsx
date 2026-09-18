@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/ui/container";
 import { getFaqs } from "@/lib/content/supporting";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "FAQ",
-  description: "Practical answers for guests researching the resort concept.",
-};
+  description: "Read practical guest information and answers about the stay and direct enquiry flow.",
+  path: "/faq",
+});
 
 export default async function FaqPage() {
   const faqs = await getFaqs();

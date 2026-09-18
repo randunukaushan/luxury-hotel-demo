@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import { EnquiryForm } from "@/components/forms/enquiry-form";
 import { Container } from "@/components/ui/container";
 import { getRooms } from "@/lib/content/rooms";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Check Availability",
-  description: "Send dates and guest details through the direct availability enquiry flow.",
-};
+  description: "Send preferred dates and guest details through the direct availability enquiry flow.",
+  path: "/availability",
+});
 
 type AvailabilityPageProps = {
   searchParams: Promise<{ room?: string }>;
