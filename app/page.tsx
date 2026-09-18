@@ -1,6 +1,13 @@
+import { createPageMetadata } from "@/lib/seo/metadata";
 import { EnquiryForm } from "@/components/forms/enquiry-form";
 import { Container } from "@/components/ui/container";
 import { getRooms } from "@/lib/content/rooms";
+
+export const metadata = createPageMetadata({
+  title: "Home",
+  description: "A premium scenic-stay website concept for Kandy Victoria Eco Resort.",
+  path: "/",
+});
 
 const stays = [
   {

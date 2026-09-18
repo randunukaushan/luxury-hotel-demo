@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { getDining } from "@/lib/content/supporting";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Dining",
-  description: "Dining and breakfast presentation for the premium hotel website concept.",
-};
+  description: "Explore the dining and breakfast experience for the premium hotel website concept.",
+  path: "/dining",
+});
 
 export default async function DiningPage() {
   const dining = await getDining();

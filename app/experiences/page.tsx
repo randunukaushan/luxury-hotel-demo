@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/ui/container";
 import { getExperiences } from "@/lib/content/supporting";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Experiences",
-  description: "Explore the destination and experience direction for the resort concept.",
-};
+  description: "Explore destination stories and verified experience content for a scenic stay near Kandy.",
+  path: "/experiences",
+});
 
 export default async function ExperiencesPage() {
   const experiences = await getExperiences();

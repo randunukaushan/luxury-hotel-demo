@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import { GalleryGrid } from "@/components/gallery/gallery-grid";
 import { Container } from "@/components/ui/container";
 import { getGalleryItems } from "@/lib/content/supporting";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Gallery",
-  description: "An editorial gallery direction for the resort website concept.",
-};
+  description: "Explore the editorial property gallery and photography experience.",
+  path: "/gallery",
+});
 
 export default async function GalleryPage() {
   const items = await getGalleryItems();

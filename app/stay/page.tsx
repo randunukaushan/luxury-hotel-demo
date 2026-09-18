@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
 import { RoomCard } from "@/components/room/room-card";
 import { Container } from "@/components/ui/container";
 import { getRooms } from "@/lib/content/rooms";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Stay",
-  description:
-    "Explore the premium room-presentation concept for Kandy Victoria Eco Resort.",
-};
+  description: "Explore the accommodation experience and room presentation for Kandy Victoria Eco Resort.",
+  path: "/stay",
+});
 
 export default async function StayPage() {
   const rooms = await getRooms();
