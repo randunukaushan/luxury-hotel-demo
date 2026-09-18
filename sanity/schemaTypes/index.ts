@@ -1,3 +1,4 @@
+import { heroCarouselType } from "@/sanity/schemaTypes/heroCarouselType";
 import { roomType } from "@/sanity/schemaTypes/roomType";
 import { siteSettingsType } from "@/sanity/schemaTypes/siteSettingsType";
 import {
@@ -12,6 +13,7 @@ import {
 
 export const schemaTypes = [
   siteSettingsType,
+  heroCarouselType,
   roomType,
   experienceType,
   diningType,
