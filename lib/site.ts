@@ -1,9 +1,16 @@
+const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || "http://localhost:3000";
+
+export const siteStatus =
+  process.env.NEXT_PUBLIC_SITE_STATUS === "production" ? "production" : "preview";
+
+export const isProductionSite = siteStatus === "production";
+
 export const siteConfig = {
   name: "Kandy Victoria Eco Resort",
   shortName: "Kandy Victoria",
   description:
     "A premium website concept for a peaceful scenic stay near Kandy, Sri Lanka.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: configuredUrl.replace(/\/$/, ""),
 } as const;
 
 export const navigation = [

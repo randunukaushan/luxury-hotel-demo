@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getRooms } from "@/lib/content/rooms";
-import { siteConfig } from "@/lib/site";
+import { isProductionSite, siteConfig } from "@/lib/site";
 
 const routes = [
   "",
@@ -16,6 +16,8 @@ const routes = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  if (!isProductionSite) return [];
+
   const rooms = await getRooms();
   const now = new Date();
 
