@@ -46,7 +46,7 @@ export const conceptImages = {
     alt: "Tropical resort breakfast set beside an open view",
     credit: "Rachel Claire / Pexels",
     source: "https://www.pexels.com/photo/served-tables-on-terrace-in-tropical-resort-4993247/",
-  },,
+  },
   roomSriLanka: {
     src: "https://images.pexels.com/photos/34803620/pexels-photo-34803620.jpeg?cs=srgb&dl=pexels-hiruna-wanninayake-2156204267-34803620.jpg&fm=jpg",
     alt: "Elegant Sri Lankan hotel room with warm wooden furniture and natural light",
