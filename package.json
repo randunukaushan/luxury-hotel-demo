@@ -1,13 +1,16 @@
 {
   "name": "luxury-hotel-demo",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "smoke": "node scripts/smoke.mjs",
+    "validate:production": "node scripts/validate-production.mjs",
+    "quality": "npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
     "@sanity/image-url": "2.1.1",
