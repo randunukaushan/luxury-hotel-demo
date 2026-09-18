@@ -1,7 +1,7 @@
 import { conceptImages } from "@/lib/media/concept-images";
 import type { CarouselSlide } from "@/components/media/cinematic-carousel";
 
-export type CarouselPageKey = "home" | "dining" | "gallery" | "kandy" | "offers";
+export type CarouselPageKey = "home" | "experiences" | "dining" | "gallery" | "kandy" | "offers";
 
 const slide = (image: { src: string; alt: string }): CarouselSlide => ({
   imageUrl: image.src,
@@ -13,6 +13,11 @@ export const fallbackCarousels: Record<CarouselPageKey, CarouselSlide[]> = {
     slide(conceptImages.heroTea),
     slide(conceptImages.hillLake),
     slide(conceptImages.kandyCity),
+  ],
+  experiences: [
+    slide(conceptImages.heroTea),
+    slide(conceptImages.kandyCity),
+    slide(conceptImages.breakfastTerrace),
   ],
   dining: [
     slide(conceptImages.dining),
