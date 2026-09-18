@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics/events";
 
 type EnquiryFormProps = {
   kind: "availability" | "contact";
@@ -20,10 +21,21 @@ export function EnquiryForm({
   initialRoomSlug = "",
 }: EnquiryFormProps) {
   const [result, setResult] = useState<ResultState>({ state: "idle" });
+  const hasTrackedStart = useRef(false);
+
+  const issues = result.state === "error" ? result.issues : undefined;
+  const eventPrefix = kind === "availability" ? "availability_form" : "contact_form";
+
+  function trackStart() {
+    if (hasTrackedStart.current) return;
+    hasTrackedStart.current = true;
+    trackEvent(`${eventPrefix}_start`);
+  }
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setResult({ state: "submitting" });
+    trackEvent(`${eventPrefix}_submit`);
 
     const formElement = event.currentTarget;
     const form = new FormData(formElement);
@@ -44,45 +56,74 @@ export function EnquiryForm({
           message: data.message || "Please check the form and try again.",
           issues: data.issues,
         });
+        trackEvent(`${eventPrefix}_error`, { status: response.status });
         return;
       }
 
       setResult({ state: "success", delivered: Boolean(data.delivered) });
+      trackEvent(`${eventPrefix}_success`, { delivered: Boolean(data.delivered) });
       formElement.reset();
     } catch {
       setResult({
         state: "error",
         message: "The form could not connect. Please try again.",
       });
+      trackEvent(`${eventPrefix}_error`, { status: "network" });
     }
   }
 
   const availability = kind === "availability";
 
   return (
-    <form className="enquiry-form" onSubmit={onSubmit} noValidate>
+    <form
+      className="enquiry-form"
+      onSubmit={onSubmit}
+      onFocusCapture={trackStart}
+      noValidate
+    >
       <div className="enquiry-form__grid">
         <label>
           <span>Name</span>
-          <input name="name" autoComplete="name" required maxLength={100} />
-          {result.state === "error" && result.issues?.name?.[0] && (
-            <small className="field-error">{result.issues.name[0]}</small>
+          <input
+            name="name"
+            autoComplete="name"
+            required
+            maxLength={100}
+            aria-invalid={Boolean(issues?.name?.[0])}
+            aria-describedby={issues?.name?.[0] ? "name-error" : undefined}
+          />
+          {issues?.name?.[0] && (
+            <small id="name-error" className="field-error">{issues.name[0]}</small>
           )}
         </label>
 
         <label>
           <span>Email</span>
-          <input name="email" type="email" autoComplete="email" maxLength={160} />
-          {result.state === "error" && result.issues?.email?.[0] && (
-            <small className="field-error">{result.issues.email[0]}</small>
+          <input
+            name="email"
+            type="email"
+            autoComplete="email"
+            maxLength={160}
+            aria-invalid={Boolean(issues?.email?.[0])}
+            aria-describedby={issues?.email?.[0] ? "email-error" : undefined}
+          />
+          {issues?.email?.[0] && (
+            <small id="email-error" className="field-error">{issues.email[0]}</small>
           )}
         </label>
 
         <label>
           <span>Phone</span>
-          <input name="phone" type="tel" autoComplete="tel" maxLength={40} />
-          {result.state === "error" && result.issues?.phone?.[0] && (
-            <small className="field-error">{result.issues.phone[0]}</small>
+          <input
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            maxLength={40}
+            aria-invalid={Boolean(issues?.phone?.[0])}
+            aria-describedby={issues?.phone?.[0] ? "phone-error" : undefined}
+          />
+          {issues?.phone?.[0] && (
+            <small id="phone-error" className="field-error">{issues.phone[0]}</small>
           )}
         </label>
 
@@ -90,16 +131,28 @@ export function EnquiryForm({
           <>
             <label>
               <span>Check in</span>
-              <input name="checkIn" type="date" required />
-              {result.state === "error" && result.issues?.checkIn?.[0] && (
-                <small className="field-error">{result.issues.checkIn[0]}</small>
+              <input
+                name="checkIn"
+                type="date"
+                required
+                aria-invalid={Boolean(issues?.checkIn?.[0])}
+                aria-describedby={issues?.checkIn?.[0] ? "checkin-error" : undefined}
+              />
+              {issues?.checkIn?.[0] && (
+                <small id="checkin-error" className="field-error">{issues.checkIn[0]}</small>
               )}
             </label>
             <label>
               <span>Check out</span>
-              <input name="checkOut" type="date" required />
-              {result.state === "error" && result.issues?.checkOut?.[0] && (
-                <small className="field-error">{result.issues.checkOut[0]}</small>
+              <input
+                name="checkOut"
+                type="date"
+                required
+                aria-invalid={Boolean(issues?.checkOut?.[0])}
+                aria-describedby={issues?.checkOut?.[0] ? "checkout-error" : undefined}
+              />
+              {issues?.checkOut?.[0] && (
+                <small id="checkout-error" className="field-error">{issues.checkOut[0]}</small>
               )}
             </label>
             <label>
@@ -157,7 +210,7 @@ export function EnquiryForm({
               : "Send message"}
         </button>
 
-        <div className="form-status" aria-live="polite">
+        <div className="form-status" aria-live="polite" aria-atomic="true">
           {result.state === "success" && result.delivered && (
             <p>Your enquiry was sent successfully.</p>
           )}

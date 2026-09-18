@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics/events";
 
 type GalleryItem = {
   alt: string;
@@ -17,6 +18,8 @@ export function GalleryGrid({ items }: GalleryGridProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const closeRef = useRef<HTMLButtonElement | null>(null);
+  const previousRef = useRef<HTMLButtonElement | null>(null);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
 
   const selected = selectedIndex === null ? null : items[selectedIndex];
 
@@ -48,6 +51,24 @@ export function GalleryGrid({ items }: GalleryGridProps) {
       if (event.key === "Escape") close();
       if (event.key === "ArrowRight") move(1);
       if (event.key === "ArrowLeft") move(-1);
+
+      if (event.key === "Tab") {
+        const focusable = [
+          closeRef.current,
+          previousRef.current,
+          nextRef.current,
+        ].filter((element): element is HTMLButtonElement => Boolean(element));
+
+        if (!focusable.length) return;
+
+        const currentIndex = focusable.indexOf(document.activeElement as HTMLButtonElement);
+        const nextIndex = event.shiftKey
+          ? (currentIndex - 1 + focusable.length) % focusable.length
+          : (currentIndex + 1) % focusable.length;
+
+        event.preventDefault();
+        focusable[nextIndex]?.focus();
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -57,6 +78,15 @@ export function GalleryGrid({ items }: GalleryGridProps) {
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [close, move, selectedIndex]);
+
+  function open(index: number) {
+    const item = items[index];
+    trackEvent("gallery_open", {
+      category: item?.category,
+      image_index: index + 1,
+    });
+    setSelectedIndex(index);
+  }
 
   return (
     <>
@@ -68,7 +98,7 @@ export function GalleryGrid({ items }: GalleryGridProps) {
                 className="gallery-open"
                 type="button"
                 aria-label={`Open image ${index + 1}: ${item.alt}`}
-                onClick={() => setSelectedIndex(index)}
+                onClick={() => open(index)}
                 ref={(node) => {
                   triggerRefs.current[index] = node;
                 }}
@@ -105,6 +135,7 @@ export function GalleryGrid({ items }: GalleryGridProps) {
           </button>
 
           <button
+            ref={previousRef}
             className="gallery-lightbox__nav gallery-lightbox__nav--prev"
             type="button"
             onClick={() => move(-1)}
@@ -125,6 +156,7 @@ export function GalleryGrid({ items }: GalleryGridProps) {
           </div>
 
           <button
+            ref={nextRef}
             className="gallery-lightbox__nav gallery-lightbox__nav--next"
             type="button"
             onClick={() => move(1)}

@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { trackEvent } from "@/lib/analytics/events";
 import { navigation, siteConfig } from "@/lib/site";
 
 export function Header() {
@@ -29,22 +31,26 @@ export function Header() {
         Skip to content
       </a>
       <div className="site-header__inner">
-        <a className="wordmark" href="#top" aria-label={`${siteConfig.name} home`}>
+        <Link className="wordmark" href="/" aria-label={`${siteConfig.name} home`}>
           <span className="wordmark__eyebrow">KANDY VICTORIA</span>
           <span className="wordmark__title">ECO RESORT</span>
-        </a>
+        </Link>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navigation.map((item) => (
-            <a key={item.href} href={item.href}>
+            <Link key={item.href} href={item.href}>
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <a className="header-cta" href="#availability">
+        <Link
+          className="header-cta"
+          href="/availability"
+          onClick={() => trackEvent("check_availability_click", { source: "header" })}
+        >
           Check availability
-        </a>
+        </Link>
 
         <button
           className="menu-button"
@@ -64,14 +70,21 @@ export function Header() {
       <div id="mobile-menu" className={`mobile-menu ${open ? "mobile-menu--open" : ""}`}>
         <nav aria-label="Mobile navigation">
           {navigation.map((item, index) => (
-            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+            <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
               <span>0{index + 1}</span>
               {item.label}
-            </a>
+            </Link>
           ))}
-          <a className="mobile-menu__cta" href="#availability" onClick={() => setOpen(false)}>
+          <Link
+            className="mobile-menu__cta"
+            href="/availability"
+            onClick={() => {
+              trackEvent("check_availability_click", { source: "mobile_menu" });
+              setOpen(false);
+            }}
+          >
             Check availability
-          </a>
+          </Link>
         </nav>
       </div>
     </header>
