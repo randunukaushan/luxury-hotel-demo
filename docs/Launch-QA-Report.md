@@ -177,7 +177,15 @@ After a real preview deployment exists, run:
 ## 9. Current QA Status
 
 ### 9.1 Code-Level Status
-The codebase is prepared for the automated CI quality gate and deployment smoke test.
+The latest implementation quality gate passed:
+
+- dependency installation;
+- ESLint;
+- TypeScript typecheck;
+- Next.js production build;
+- production-server smoke tests.
+
+All primary routes, robots.txt, sitemap.xml, the health endpoint, and invalid-enquiry handling passed the automated smoke test.
 
 ### 9.2 Public Launch Status
 Public launch remains blocked until the client-owned production accounts, verified hotel content, and production environment variables are connected.
