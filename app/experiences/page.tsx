@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/ui/container";
 import { getExperiences } from "@/lib/content/supporting";
@@ -29,7 +30,17 @@ export default async function ExperiencesPage() {
           <div className="editorial-cards">
             {experiences.map((item, index) => (
               <article className="editorial-card" key={item.slug}>
-                <div className={`editorial-card__visual editorial-card__visual--${(index % 3) + 1}`} />
+                <div className={`editorial-card__visual editorial-card__visual--${(index % 3) + 1}`}>
+                  {item.imageUrl && (
+                    <Image
+                      className="editorial-card__image"
+                      src={item.imageUrl}
+                      alt={`${item.title} concept photography`}
+                      fill
+                      sizes="(max-width: 980px) 100vw, 33vw"
+                    />
+                  )}
+                </div>
                 <div className="editorial-card__body">
                   <div className="editorial-card__meta">
                     <span>{String(index + 1).padStart(2, "0")}</span>
