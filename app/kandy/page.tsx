@@ -1,6 +1,8 @@
+import Image from "next/image";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/ui/container";
 import { getAttractions } from "@/lib/content/supporting";
+import { conceptImages } from "@/lib/media/concept-images";
 
 export const metadata = createPageMetadata({
   title: "Kandy",
@@ -30,6 +32,17 @@ export default async function KandyPage() {
             <p className="eyebrow">The destination layer</p>
             <h2 className="display-heading">Give guests context before they arrive.</h2>
           </div>
+
+          <div className="destination-hero-media">
+            <Image
+              src={conceptImages.kandyCity.src}
+              alt={conceptImages.kandyCity.alt}
+              fill
+              sizes="(max-width: 980px) 100vw, 1440px"
+            />
+            <span>Concept destination photography · Kandy</span>
+          </div>
+
           <div className="destination-list">
             {attractions.map((item, index) => (
               <article key={item.title}>
