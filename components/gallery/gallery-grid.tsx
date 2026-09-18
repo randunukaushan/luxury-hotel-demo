@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type GalleryItem = {
   alt: string;
@@ -20,18 +20,21 @@ export function GalleryGrid({ items }: GalleryGridProps) {
 
   const selected = selectedIndex === null ? null : items[selectedIndex];
 
-  function close() {
+  const close = useCallback(() => {
     const previousIndex = selectedIndex;
     setSelectedIndex(null);
     if (previousIndex !== null) {
       window.setTimeout(() => triggerRefs.current[previousIndex]?.focus(), 0);
     }
-  }
+  }, [close, move, selectedIndex]);
 
-  function move(direction: number) {
-    if (selectedIndex === null) return;
-    setSelectedIndex((selectedIndex + direction + items.length) % items.length);
-  }
+  const move = useCallback(
+    (direction: number) => {
+      if (selectedIndex === null) return;
+      setSelectedIndex((selectedIndex + direction + items.length) % items.length);
+    },
+    [items.length, selectedIndex],
+  );
 
   useEffect(() => {
     if (selectedIndex === null) return;
