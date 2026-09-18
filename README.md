@@ -15,9 +15,9 @@ This repository is the canonical workspace for research, product/design document
 
 ## 3. Current Phase
 
-**Phase 2 — Ready for Implementation**
+**Phase 2 — Implementation in Progress**
 
-The pre-implementation documentation set is complete. Implementation should now follow `docs/Demo-Build-Plan.md` and the relevant source-of-truth documents.
+The pre-implementation documentation set is complete. The Next.js application foundation, first design-system implementation, and premium homepage vertical slice are now implemented and passing CI.
 
 ## 4. Documentation
 
@@ -42,10 +42,10 @@ See `docs/Documentation-Roadmap.md` for the full sequence and status.
 
 ## 6. Implementation Status
 
-- [ ] Application foundation
-- [ ] Design system implementation
+- [x] Application foundation
+- [x] Design system implementation
 - [ ] CMS foundation
-- [ ] Homepage vertical slice
+- [x] Homepage vertical slice
 - [ ] Stay and room pages
 - [ ] Supporting pages
 - [ ] Availability/contact forms
@@ -53,17 +53,32 @@ See `docs/Documentation-Roadmap.md` for the full sequence and status.
 - [ ] Performance/accessibility QA
 - [ ] Client-ready deployment
 
-## 7. Working Rules
+## 7. Quality Status
 
-### 7.1 Documentation First
+### 7.1 Automated CI
+
+Current GitHub Actions quality gate passes:
+
+- dependency installation;
+- ESLint;
+- TypeScript typecheck;
+- production build.
+
+### 7.2 Current Demo Safety
+
+The current homepage uses art-directed CSS concept visuals instead of unlicensed property photography. Unverified room names, capacities, contact details, offers, and booking claims are deliberately not presented as confirmed production facts.
+
+## 8. Working Rules
+
+### 8.1 Documentation First
 Implementation must follow the repository documentation. If a major product, design, commercial, or technical decision changes, update the relevant document before coding.
 
-### 7.2 Verified Property Content
+### 8.2 Verified Property Content
 Do not publish unverified room facts, amenities, offers, ratings, or experiences as factual claims.
 
-### 7.3 Original Design
+### 8.3 Original Design
 Reference sites inform principles only. Do not clone their layouts, copy, or proprietary assets.
 
-## 8. Next Step
+## 9. Next Step
 
-Begin **Phase 1 — Application Foundation** in `docs/Demo-Build-Plan.md`.
+Continue with **CMS Foundation**, then implement the **Stay and Room Detail** vertical slice according to `docs/Demo-Build-Plan.md`.
