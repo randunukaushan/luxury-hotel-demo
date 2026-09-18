@@ -33,8 +33,8 @@ export function Footer() {
           <div>
             <p className="footer__label">Concept status</p>
             <p>
-              Private sales concept. Property facts, contact channels and media require client
-              approval before public launch.
+              Private sales concept. Current stock photography is for presentation only and will be
+              replaced with client-approved property media before public launch.
             </p>
           </div>
         </div>
