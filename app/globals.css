@@ -754,3 +754,226 @@ textarea { font:inherit; }
   .gallery-lightbox__caption { grid-column:1/4; padding-inline:1rem; }
   .gallery-lightbox__nav { width:2.6rem; height:2.6rem; }
 }
+
+
+/* Premium concept photography */
+.hero__art {
+  background: var(--forest);
+}
+.hero__photo {
+  object-fit: cover;
+  object-position: center 55%;
+  filter: saturate(.82) contrast(.98) brightness(.78);
+  transform: scale(1.015);
+}
+.hero__sun,
+.hero__ridge,
+.hero__water {
+  display: none;
+}
+
+.landscape-card {
+  background: var(--forest);
+}
+.landscape-card::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  clip-path: none;
+  background:
+    linear-gradient(180deg, rgba(14,23,20,.04) 35%, rgba(14,23,20,.38) 100%),
+    linear-gradient(90deg, rgba(14,23,20,.12), transparent 52%);
+}
+.landscape-card::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: auto 0 0;
+  height: 22%;
+  background: linear-gradient(180deg, transparent, rgba(14,23,20,.3));
+}
+.landscape-card__photo {
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.82) contrast(.97) brightness(.9);
+}
+.landscape-card__caption {
+  z-index: 2;
+}
+
+.stay-card__visual::after {
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 48%, rgba(14,23,20,.42) 100%);
+}
+.stay-card__image {
+  object-fit: cover;
+  filter: saturate(.8) contrast(.97) brightness(.94);
+  transition: transform .75s var(--ease), filter .75s var(--ease);
+}
+.stay-card:hover .stay-card__image {
+  transform: scale(1.035);
+  filter: saturate(.9) contrast(1) brightness(.98);
+}
+.concept-media-label {
+  position: absolute;
+  z-index: 3;
+  left: 1rem;
+  bottom: 1rem;
+  padding: .45rem .6rem;
+  background: rgba(17,25,22,.62);
+  color: rgba(250,248,243,.86);
+  backdrop-filter: blur(8px);
+  font-size: .56rem;
+  line-height: 1;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.dine__art::before {
+  display: none;
+}
+.dine__image {
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.82) contrast(.98) brightness(.93);
+}
+
+.gallery-tile::after {
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(145deg, transparent 30%, rgba(17,28,24,.25));
+}
+.gallery-tile__image {
+  object-fit: cover;
+  filter: saturate(.8) contrast(.98) brightness(.94);
+  transition: transform .7s var(--ease), filter .7s var(--ease);
+}
+.gallery-tile:hover .gallery-tile__image {
+  transform: scale(1.035);
+  filter: saturate(.9) contrast(1) brightness(.98);
+}
+
+.location__media,
+.destination-hero-media {
+  position: relative;
+  min-height: clamp(24rem, 52vw, 48rem);
+  margin-top: clamp(4rem, 8vw, 8rem);
+  overflow: hidden;
+  background: var(--forest);
+}
+.destination-hero-media {
+  margin-top: 0;
+  margin-bottom: clamp(4rem, 8vw, 8rem);
+}
+.location__media img,
+.destination-hero-media img {
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.8) contrast(.97) brightness(.88);
+}
+.location__media::after,
+.destination-hero-media::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(13,21,18,.45) 100%);
+  pointer-events: none;
+}
+.location__media span,
+.destination-hero-media span {
+  position: absolute;
+  z-index: 2;
+  left: 1rem;
+  bottom: 1rem;
+  color: rgba(250,248,243,.78);
+  font-size: .58rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.editorial-card__visual {
+  position: relative;
+  overflow: hidden;
+}
+.editorial-card__image {
+  object-fit: cover;
+  filter: saturate(.8) contrast(.98) brightness(.92);
+  transition: transform .7s var(--ease), filter .7s var(--ease);
+}
+.editorial-card:hover .editorial-card__image {
+  transform: scale(1.035);
+  filter: saturate(.9) contrast(1) brightness(.97);
+}
+
+.food-concept-art::before {
+  display: none;
+}
+.food-concept-art__image {
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.82) contrast(.98) brightness(.93);
+}
+
+.room-visual--image::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 54%, rgba(12,20,17,.28) 100%);
+  pointer-events: none;
+}
+.room-visual__photo {
+  object-fit: cover;
+  filter: saturate(.8) contrast(.98) brightness(.93);
+  transition: transform .8s var(--ease), filter .8s var(--ease);
+}
+.room-list-card:hover .room-visual__photo {
+  transform: scale(1.025);
+  filter: saturate(.88) contrast(1) brightness(.97);
+}
+.room-visual__label--photo {
+  z-index: 2;
+  padding: .5rem .65rem;
+  background: rgba(15,24,21,.68);
+  backdrop-filter: blur(8px);
+  color: rgba(250,248,243,.86);
+}
+
+.room-gallery-concept__image {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--forest);
+}
+.room-gallery-concept__image img {
+  object-fit: cover;
+  filter: saturate(.8) contrast(.98) brightness(.92);
+  transition: transform .7s var(--ease);
+}
+.room-gallery-concept__image:hover img {
+  transform: scale(1.025);
+}
+
+.real-gallery img {
+  filter: saturate(.82) contrast(.98) brightness(.95);
+}
+
+@media (max-width: 640px) {
+  .hero__photo {
+    object-position: 58% center;
+  }
+
+  .concept-media-label,
+  .location__media span,
+  .destination-hero-media span {
+    font-size: .52rem;
+  }
+
+  .location__media,
+  .destination-hero-media {
+    min-height: 22rem;
+  }
+}
