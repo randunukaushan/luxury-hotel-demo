@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -113,8 +114,19 @@ export default async function RoomPage({ params }: RoomPageProps) {
           </div>
           <div className="room-gallery-concept">
             <RoomVisual room={room} />
-            <div className={`room-gallery-concept__tile room-gallery-concept__tile--${room.visualTone}`} />
-            <div className="room-gallery-concept__tile room-gallery-concept__tile--neutral" />
+            {room.galleryImageUrls.slice(0, 2).map((imageUrl, index) => (
+              <div className="room-gallery-concept__image" key={imageUrl}>
+                <Image
+                  src={imageUrl}
+                  alt={`${room.title} concept gallery image ${index + 2}`}
+                  fill
+                  sizes="(max-width: 980px) 50vw, 36vw"
+                />
+                {room.isConcept && (
+                  <span className="concept-media-label">Concept photography</span>
+                )}
+              </div>
+            ))}
           </div>
         </Container>
       </section>
