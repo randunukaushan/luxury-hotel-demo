@@ -1,6 +1,8 @@
 import { createPageMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
+import { CinematicCarousel } from "@/components/media/cinematic-carousel";
 import { Container } from "@/components/ui/container";
+import { getPageCarousel } from "@/lib/content/carousels";
 import { getOffers } from "@/lib/content/supporting";
 
 export const metadata = createPageMetadata({
@@ -10,12 +12,19 @@ export const metadata = createPageMetadata({
 });
 
 export default async function OffersPage() {
-  const offers = await getOffers();
+  const [offers, carousel] = await Promise.all([getOffers(), getPageCarousel("offers")]);
 
   return (
     <main id="main-content" className="inner-page">
-      <section className="editorial-hero editorial-hero--forest">
-        <Container>
+      <section className="cinematic-page-hero">
+        <CinematicCarousel
+          className="cinematic-page-hero__media"
+          slides={carousel.slides}
+          intervalMs={carousel.intervalMs}
+          priority
+          label="Offers photography"
+        />
+        <Container className="cinematic-page-hero__content">
           <p className="eyebrow eyebrow--light">Offers</p>
           <h1>Value without fake urgency.</h1>
           <p>
