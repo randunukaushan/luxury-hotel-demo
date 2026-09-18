@@ -50,11 +50,9 @@ export function CinematicCarousel({
     return () => window.clearInterval(timer);
   }, [intervalMs, paused, reduceMotion, validSlides.length]);
 
-  useEffect(() => {
-    if (active >= validSlides.length) setActive(0);
-  }, [active, validSlides.length]);
-
   if (!validSlides.length) return null;
+
+  const currentIndex = active % validSlides.length;
 
   function move(direction: number) {
     setActive((current) => (current + direction + validSlides.length) % validSlides.length);
@@ -80,14 +78,14 @@ export function CinematicCarousel({
         {validSlides.map((slide, index) => (
           <div
             className={`cinematic-carousel__slide ${
-              index === active ? "cinematic-carousel__slide--active" : ""
+              index === currentIndex ? "cinematic-carousel__slide--active" : ""
             }`}
             aria-hidden={index !== active}
             key={`${slide.imageUrl}-${index}`}
           >
             <Image
               src={slide.imageUrl}
-              alt={index === active ? slide.alt : ""}
+              alt={index === currentIndex ? slide.alt : ""}
               fill
               priority={priority && index === 0}
               sizes="100vw"
@@ -108,9 +106,9 @@ export function CinematicCarousel({
               <button
                 type="button"
                 key={`dot-${slide.imageUrl}-${index}`}
-                className={index === active ? "is-active" : ""}
+                className={index === currentIndex ? "is-active" : ""}
                 aria-label={`Show image ${index + 1} of ${validSlides.length}`}
-                aria-current={index === active ? "true" : undefined}
+                aria-current={index === currentIndex ? "true" : undefined}
                 onClick={() => setActive(index)}
               />
             ))}
