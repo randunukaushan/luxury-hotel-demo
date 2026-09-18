@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { Metadata } from "next";
+import { GalleryGrid } from "@/components/gallery/gallery-grid";
 import { Container } from "@/components/ui/container";
 import { getGalleryItems } from "@/lib/content/supporting";
 
@@ -27,22 +27,7 @@ export default async function GalleryPage() {
       <section className="section section--linen">
         <Container>
           {items.length > 0 ? (
-            <div className="real-gallery">
-              {items.map((item, index) => (
-                <figure key={`${item.imageUrl}-${index}`}>
-                  {item.imageUrl && (
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.alt}
-                      width={1200}
-                      height={900}
-                      sizes="(max-width: 760px) 100vw, 50vw"
-                    />
-                  )}
-                  <figcaption>{item.category}</figcaption>
-                </figure>
-              ))}
-            </div>
+            <GalleryGrid items={items} />
           ) : (
             <div className="concept-gallery" aria-label="Editorial gallery layout preview">
               <div className="concept-gallery__a" />
