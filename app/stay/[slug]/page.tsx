@@ -128,7 +128,7 @@ export default async function RoomPage({ params }: RoomPageProps) {
                 or the hotel’s booking engine.
               </p>
               <div className="room-booking__actions">
-                <Link className="button button--dark" href="/#availability">
+                <Link className="button button--dark" href={\`/availability?room=\${encodeURIComponent(room.slug)}\`}>
                   Check availability
                 </Link>
                 <Link className="text-link" href="/stay">

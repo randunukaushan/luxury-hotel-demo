@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 type EnquiryFormProps = {
   kind: "availability" | "contact";
   rooms?: Array<{ slug: string; title: string }>;
+  initialRoomSlug?: string;
 };
 
 type ResultState =
@@ -13,14 +14,19 @@ type ResultState =
   | { state: "success"; delivered: boolean }
   | { state: "error"; message: string; issues?: Record<string, string[]> };
 
-export function EnquiryForm({ kind, rooms = [] }: EnquiryFormProps) {
+export function EnquiryForm({
+  kind,
+  rooms = [],
+  initialRoomSlug = "",
+}: EnquiryFormProps) {
   const [result, setResult] = useState<ResultState>({ state: "idle" });
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setResult({ state: "submitting" });
 
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     const payload = Object.fromEntries(form.entries());
 
     try {
@@ -42,7 +48,7 @@ export function EnquiryForm({ kind, rooms = [] }: EnquiryFormProps) {
       }
 
       setResult({ state: "success", delivered: Boolean(data.delivered) });
-      event.currentTarget.reset();
+      formElement.reset();
     } catch {
       setResult({
         state: "error",
@@ -108,7 +114,7 @@ export function EnquiryForm({ kind, rooms = [] }: EnquiryFormProps) {
             </label>
             <label>
               <span>Room interest</span>
-              <select name="roomSlug" defaultValue="">
+              <select name="roomSlug" defaultValue={initialRoomSlug}>
                 <option value="">Any suitable stay</option>
                 {rooms.map((room) => (
                   <option key={room.slug} value={room.slug}>

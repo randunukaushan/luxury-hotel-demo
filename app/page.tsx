@@ -1,4 +1,4 @@
-import { Container } from "@/components/ui/container";
+import { EnquiryForm } from "@/components/forms/enquiry-form";\nimport { Container } from "@/components/ui/container";\nimport { getRooms } from "@/lib/content/rooms";
 
 const stays = [
   {
@@ -224,28 +224,10 @@ export default function HomePage() {
               after owner verification.
             </p>
           </div>
-          <form className="availability-form">
-            <label>
-              <span>Check in</span>
-              <input type="date" name="checkIn" />
-            </label>
-            <label>
-              <span>Check out</span>
-              <input type="date" name="checkOut" />
-            </label>
-            <label>
-              <span>Guests</span>
-              <select name="guests" defaultValue="2">
-                <option value="1">1 guest</option>
-                <option value="2">2 guests</option>
-                <option value="3">3 guests</option>
-                <option value="4">4 guests</option>
-              </select>
-            </label>
-            <button type="button" className="button button--bronze">
-              Preview enquiry flow
-            </button>
-          </form>
+          <EnquiryForm
+            kind="availability"
+            rooms={rooms.map((room) => ({ slug: room.slug, title: room.title }))}
+          />
         </Container>
       </section>
     </main>

@@ -30,7 +30,7 @@ export default function ContactPage() {
               <h2 className="display-heading">Tell us what you need.</h2>
               <p className="form-page-copy">
                 This private demo validates submissions. Email delivery switches on when the
-                property's receiving address and secure Resend credentials are configured.
+                property’s receiving address and secure Resend credentials are configured.
               </p>
               <Link className="text-link" href="/availability">
                 Looking for dates? Check availability <span>↗</span>

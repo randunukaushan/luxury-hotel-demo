@@ -8,8 +8,15 @@ export const metadata: Metadata = {
   description: "Send dates and guest details through the direct availability enquiry flow.",
 };
 
-export default async function AvailabilityPage() {
-  const rooms = await getRooms();
+type AvailabilityPageProps = {
+  searchParams: Promise<{ room?: string }>;
+};
+
+export default async function AvailabilityPage({ searchParams }: AvailabilityPageProps) {
+  const [rooms, query] = await Promise.all([getRooms(), searchParams]);
+  const initialRoomSlug = rooms.some((room) => room.slug === query.room)
+    ? query.room
+    : undefined;
 
   return (
     <main id="main-content" className="inner-page">
@@ -44,6 +51,7 @@ export default async function AvailabilityPage() {
             <EnquiryForm
               kind="availability"
               rooms={rooms.map((room) => ({ slug: room.slug, title: room.title }))}
+              initialRoomSlug={initialRoomSlug}
             />
           </div>
         </Container>
