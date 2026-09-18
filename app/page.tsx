@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { CinematicCarousel } from "@/components/media/cinematic-carousel";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { EnquiryForm } from "@/components/forms/enquiry-form";
 import { Container } from "@/components/ui/container";
+import { getPageCarousel } from "@/lib/content/carousels";
 import { getRooms } from "@/lib/content/rooms";
 import { conceptImages } from "@/lib/media/concept-images";
 
@@ -53,22 +55,18 @@ const galleryPreview = [
 ] as const;
 
 export default async function HomePage() {
-  const rooms = await getRooms();
+  const [rooms, carousel] = await Promise.all([getRooms(), getPageCarousel("home")]);
 
   return (
     <main id="main-content">
       <section id="top" className="hero" aria-labelledby="hero-title">
-        <div className="hero__art">
-          <Image
-            className="hero__photo"
-            src={conceptImages.heroTea.src}
-            alt={conceptImages.heroTea.alt}
-            fill
-            priority
-            sizes="100vw"
-          />
-          <div className="hero__grain" aria-hidden="true" />
-        </div>
+        <CinematicCarousel
+          className="hero__carousel"
+          slides={carousel.slides}
+          intervalMs={carousel.intervalMs}
+          priority
+          label="Home hero photography"
+        />
 
         <Container className="hero__content">
           <p className="eyebrow eyebrow--light">Kandy · Sri Lanka</p>
