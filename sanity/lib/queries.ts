@@ -95,3 +95,14 @@ export const attractionsQuery = defineQuery(`
     verified
   }
 `);
+
+
+export const heroCarouselQuery = defineQuery(`
+  *[_type == "heroCarousel" && page == $page][0] {
+    intervalSeconds,
+    "slides": slides[] {
+      alt,
+      "imageUrl": image.asset->url
+    }
+  }
+`);
