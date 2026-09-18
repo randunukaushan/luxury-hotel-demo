@@ -12,13 +12,19 @@ export function RoomVisual({ room, priority = false, className = "" }: RoomVisua
     return (
       <div className={`room-visual room-visual--image ${className}`.trim()}>
         <Image
+          className="room-visual__photo"
           src={room.heroImageUrl}
-          alt={`${room.title} room preview`}
+          alt={room.isConcept ? `${room.title} concept photography` : `${room.title} room preview`}
           fill
           priority={priority}
           sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 42vw"
           style={{ objectFit: "cover" }}
         />
+        {room.isConcept && (
+          <span className="room-visual__label room-visual__label--photo">
+            Concept photography · not property media
+          </span>
+        )}
       </div>
     );
   }
