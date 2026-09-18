@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { EnquiryForm } from "@/components/forms/enquiry-form";
 import { Container } from "@/components/ui/container";
 import { getRooms } from "@/lib/content/rooms";
+import { conceptImages } from "@/lib/media/concept-images";
 
 export const metadata = createPageMetadata({
   title: "Home",
@@ -16,6 +18,7 @@ const stays = [
     detail: "A room-story direction built around verified scenic views and unhurried mornings.",
     meta: "Room inventory to be confirmed",
     tone: "stay-card--lake",
+    image: conceptImages.roomPanoramic,
   },
   {
     number: "02",
@@ -23,6 +26,7 @@ const stays = [
     detail: "A calmer, greener visual direction designed for guests seeking privacy and a slower pace.",
     meta: "Final room facts pending client approval",
     tone: "stay-card--forest",
+    image: conceptImages.roomNature,
   },
   {
     number: "03",
@@ -30,6 +34,7 @@ const stays = [
     detail: "Editorial layouts that make views, space and verified room details easy to compare.",
     meta: "Names and capacities to be verified",
     tone: "stay-card--stone",
+    image: conceptImages.roomLake,
   },
 ];
 
@@ -40,19 +45,31 @@ const principles = [
   ["Dining", "Breakfast and food receive the visual weight guests already respond to."],
 ];
 
+const galleryPreview = [
+  [conceptImages.heroTea, "gallery-tile--a"],
+  [conceptImages.roomPanoramic, "gallery-tile--b"],
+  [conceptImages.breakfastTerrace, "gallery-tile--c"],
+  [conceptImages.kandyCity, "gallery-tile--d"],
+] as const;
+
 export default async function HomePage() {
   const rooms = await getRooms();
 
   return (
     <main id="main-content">
       <section id="top" className="hero" aria-labelledby="hero-title">
-        <div className="hero__art" aria-hidden="true">
-          <div className="hero__sun" />
-          <div className="hero__ridge hero__ridge--back" />
-          <div className="hero__ridge hero__ridge--front" />
-          <div className="hero__water" />
-          <div className="hero__grain" />
+        <div className="hero__art">
+          <Image
+            className="hero__photo"
+            src={conceptImages.heroTea.src}
+            alt={conceptImages.heroTea.alt}
+            fill
+            priority
+            sizes="100vw"
+          />
+          <div className="hero__grain" aria-hidden="true" />
         </div>
+
         <Container className="hero__content">
           <p className="eyebrow eyebrow--light">Kandy · Sri Lanka</p>
           <h1 id="hero-title">
@@ -73,7 +90,7 @@ export default async function HomePage() {
             </a>
           </div>
         </Container>
-        <div className="hero__note">Private concept · verified facts only</div>
+        <div className="hero__note">Private concept · stock photography · verified facts only</div>
       </section>
 
       <section id="story" className="section section--ivory story">
@@ -97,10 +114,18 @@ export default async function HomePage() {
               </p>
             </div>
           </div>
-          <div className="landscape-card" aria-label="Abstract scenic concept preview">
+
+          <div className="landscape-card">
+            <Image
+              className="landscape-card__photo"
+              src={conceptImages.hillLake.src}
+              alt={conceptImages.hillLake.alt}
+              fill
+              sizes="(max-width: 900px) 100vw, 1440px"
+            />
             <div className="landscape-card__caption">
-              <span>VICTORIA · KANDY</span>
-              <span>SCENIC CONCEPT FRAME</span>
+              <span>SRI LANKA · HILL COUNTRY</span>
+              <span>CONCEPT PHOTOGRAPHY</span>
             </div>
           </div>
         </Container>
@@ -118,10 +143,20 @@ export default async function HomePage() {
               confirms the current room inventory.
             </p>
           </div>
+
           <div className="stays__grid">
             {stays.map((stay) => (
               <article className={`stay-card ${stay.tone}`} key={stay.number}>
-                <div className="stay-card__visual" aria-hidden="true" />
+                <div className="stay-card__visual">
+                  <Image
+                    className="stay-card__image"
+                    src={stay.image.src}
+                    alt={stay.image.alt}
+                    fill
+                    sizes="(max-width: 980px) 100vw, 33vw"
+                  />
+                  <span className="concept-media-label">Concept room photography</span>
+                </div>
                 <div className="stay-card__body">
                   <div className="stay-card__number">{stay.number}</div>
                   <h3>{stay.title}</h3>
@@ -159,10 +194,15 @@ export default async function HomePage() {
       <section id="dine" className="section section--ivory dine">
         <Container>
           <div className="dine__grid">
-            <div className="dine__art" aria-hidden="true">
-              <div className="dine__plate" />
-              <div className="dine__leaf dine__leaf--one" />
-              <div className="dine__leaf dine__leaf--two" />
+            <div className="dine__art">
+              <Image
+                className="dine__image"
+                src={conceptImages.dining.src}
+                alt={conceptImages.dining.alt}
+                fill
+                sizes="(max-width: 980px) 100vw, 50vw"
+              />
+              <span className="concept-media-label">Concept dining photography</span>
             </div>
             <div className="dine__copy">
               <p className="eyebrow">04 / Dine</p>
@@ -188,15 +228,23 @@ export default async function HomePage() {
               <h2 className="display-heading">Editorial, not a thumbnail wall.</h2>
             </div>
             <p className="section-intro">
-              Original property photography will replace these art-directed placeholders before any
-              public client launch.
+              Licensed stock concept photography shows the intended art direction. Client-owned
+              property photography replaces it before any public launch.
             </p>
           </div>
-          <div className="gallery-preview__grid" aria-label="Abstract gallery layout preview">
-            <div className="gallery-tile gallery-tile--a" />
-            <div className="gallery-tile gallery-tile--b" />
-            <div className="gallery-tile gallery-tile--c" />
-            <div className="gallery-tile gallery-tile--d" />
+
+          <div className="gallery-preview__grid" aria-label="Concept photography gallery preview">
+            {galleryPreview.map(([image, className]) => (
+              <div className={`gallery-tile ${className}`} key={image.src}>
+                <Image
+                  className="gallery-tile__image"
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 980px) 100vw, 33vw"
+                />
+              </div>
+            ))}
           </div>
         </Container>
       </section>
@@ -210,8 +258,8 @@ export default async function HomePage() {
             </div>
             <div>
               <p className="location__lead">
-                The destination page will make travel context clear instead of pretending the
-                property is a city-centre hotel.
+                The destination page makes travel context clear instead of pretending the property
+                is a city-centre hotel.
               </p>
               <div className="location__facts">
                 <span>Honest travel context</span>
@@ -219,6 +267,16 @@ export default async function HomePage() {
                 <span>Map and transfer guidance</span>
               </div>
             </div>
+          </div>
+
+          <div className="location__media">
+            <Image
+              src={conceptImages.kandyCity.src}
+              alt={conceptImages.kandyCity.alt}
+              fill
+              sizes="(max-width: 980px) 100vw, 1440px"
+            />
+            <span>Concept destination photography · Kandy, Sri Lanka</span>
           </div>
         </Container>
       </section>
