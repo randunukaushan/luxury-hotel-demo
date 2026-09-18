@@ -1,6 +1,8 @@
+import { CinematicCarousel } from "@/components/media/cinematic-carousel";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { GalleryGrid } from "@/components/gallery/gallery-grid";
 import { Container } from "@/components/ui/container";
+import { getPageCarousel } from "@/lib/content/carousels";
 import { getGalleryItems } from "@/lib/content/supporting";
 
 export const metadata = createPageMetadata({
@@ -10,12 +12,19 @@ export const metadata = createPageMetadata({
 });
 
 export default async function GalleryPage() {
-  const items = await getGalleryItems();
+  const [items, carousel] = await Promise.all([getGalleryItems(), getPageCarousel("gallery")]);
 
   return (
     <main id="main-content" className="inner-page">
-      <section className="editorial-hero editorial-hero--stone">
-        <Container>
+      <section className="cinematic-page-hero">
+        <CinematicCarousel
+          className="cinematic-page-hero__media"
+          slides={carousel.slides}
+          intervalMs={carousel.intervalMs}
+          priority
+          label="Gallery hero photography"
+        />
+        <Container className="cinematic-page-hero__content">
           <p className="eyebrow eyebrow--light">Gallery</p>
           <h1>Show the truth beautifully.</h1>
           <p>
