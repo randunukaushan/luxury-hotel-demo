@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "smoke": "node scripts/smoke.mjs",
     "validate:production": "node scripts/validate-production.mjs",
-    "quality": "npm run lint && npm run typecheck && npm run build"
+    "quality": "npm run lint && npm run typecheck && npm run build",
+    "studio": "sanity dev"
   },
   "dependencies": {
     "@sanity/image-url": "2.1.1",
