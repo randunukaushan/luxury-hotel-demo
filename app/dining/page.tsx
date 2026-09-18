@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CinematicCarousel } from "@/components/media/cinematic-carousel";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/ui/container";
+import { getPageCarousel } from "@/lib/content/carousels";
 import { getDining } from "@/lib/content/supporting";
 import { conceptImages } from "@/lib/media/concept-images";
 
@@ -12,13 +14,20 @@ export const metadata = createPageMetadata({
 });
 
 export default async function DiningPage() {
-  const dining = await getDining();
+  const [dining, carousel] = await Promise.all([getDining(), getPageCarousel("dining")]);
   const primary = dining[0];
 
   return (
     <main id="main-content" className="inner-page">
-      <section className="editorial-hero editorial-hero--bronze">
-        <Container>
+      <section className="cinematic-page-hero">
+        <CinematicCarousel
+          className="cinematic-page-hero__media"
+          slides={carousel.slides}
+          intervalMs={carousel.intervalMs}
+          priority
+          label="Dining photography"
+        />
+        <Container className="cinematic-page-hero__content">
           <p className="eyebrow eyebrow--light">Dine</p>
           <h1>Taste should feel like part of the stay.</h1>
           <p>
