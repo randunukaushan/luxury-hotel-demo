@@ -15,9 +15,9 @@ This repository is the canonical workspace for research, product/design document
 
 ## 3. Current Phase
 
-**Phase 2 — Implementation in Progress**
+**Phase 3 — Client Preview Ready**
 
-The documentation set is complete. The application foundation, design system, homepage, CMS foundation, Stay and Room Detail routes, supporting pages, gallery interaction, and availability/contact enquiry flows are implemented and passing CI.
+The documentation set and implementation are complete for the client-preview stage. The application, CMS-ready content layer, SEO controls, analytics hooks, accessibility polish, enquiry flows, deployment controls, and production-server smoke tests are implemented and passing CI.
 
 ## 4. Documentation
 
@@ -49,9 +49,9 @@ See `docs/Documentation-Roadmap.md` for the full sequence and status.
 - [x] Stay and room pages
 - [x] Supporting pages
 - [x] Availability/contact forms
-- [ ] SEO and analytics implementation
-- [ ] Performance/accessibility QA
-- [ ] Client-ready deployment
+- [x] SEO and analytics implementation
+- [x] Performance/accessibility code QA
+- [x] Client-ready deployment configuration
 
 ## 7. CMS Status
 
@@ -79,7 +79,8 @@ Current GitHub Actions quality gate passes:
 - dependency installation;
 - ESLint;
 - TypeScript typecheck;
-- production build.
+- production build;
+- production-server smoke tests across the main routes, SEO endpoints, health endpoint, and enquiry validation.
 
 ### 8.2 Current Demo Safety
 
@@ -98,4 +99,18 @@ Reference sites inform principles only. Do not clone their layouts, copy, or pro
 
 ## 10. Next Step
 
-Continue with **SEO and analytics implementation**, followed by performance/accessibility QA and client-ready deployment.
+Connect the real client-owned production services and create a private preview deployment.
+
+### 10.1 External Inputs Required
+
+The repository is deployment-ready, but a real public launch still requires:
+
+- production hosting/domain access;
+- Sanity project credentials;
+- verified hotel content and client-owned media;
+- Resend/enquiry inbox credentials;
+- GA4/Search Console details if analytics/search launch is approved.
+
+### 10.2 Launch Process
+
+Follow `docs/Deployment-Runbook.md` and `docs/Launch-QA-Report.md`. Keep the preview in noindex mode until the client approves content and the live-environment QA checks pass.
