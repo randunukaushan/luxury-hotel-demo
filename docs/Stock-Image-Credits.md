@@ -104,3 +104,46 @@ The implementation catalog is maintained in:
 
 ### 6.2 Client Handoff
 This register should remain in the repository until all stock concept media has either been replaced or explicitly approved for continued use.
+
+
+## 7. Additional Carousel Photography
+
+### 7.1 Sri Lankan Hotel Room
+**Photographer:** Hiruna Wanninayake  
+**Provider:** Pexels  
+**Use in demo:** Stay / Home / Offers slideshow  
+**Source:** https://www.pexels.com/photo/luxurious-sri-lankan-hotel-room-interior-34803620/
+
+### 7.2 Cozy Mountain-View Hotel Room
+**Photographer:** Petra Nesti  
+**Provider:** Pexels  
+**Use in demo:** Stay slideshow  
+**Source:** https://www.pexels.com/photo/cozy-hotel-room-with-scenic-mountain-view-30769149/
+
+### 7.3 Modern Scenic Hotel Room
+**Photographer:** mohd hasan  
+**Provider:** Pexels  
+**Use in demo:** Stay slideshow  
+**Source:** https://www.pexels.com/photo/modern-hotel-room-with-scenic-view-30722813/
+
+### 7.4 Room with Bathtub and Mountain View
+**Photographer:** Ahmet ÇÖTÜR  
+**Provider:** Pexels  
+**Use in demo:** Offers slideshow  
+**Source:** https://www.pexels.com/photo/bedroom-with-bathtub-26859068/
+
+### 7.5 Additional Hotel Breakfast Frames
+**Provider:** Pexels  
+**Use in demo:** Dining slideshow  
+**Sources:**
+- https://www.pexels.com/photo/person-checking-order-from-hotel-room-service-6466284/
+- https://www.pexels.com/photo/toast-with-poached-egg-6466291/
+- https://www.pexels.com/photo/luxurious-hotel-breakfast-spread-with-variety-36782826/
+
+### 7.6 Additional Kandy Frames
+**Provider:** Pexels  
+**Use in demo:** Kandy slideshow  
+**Sources:**
+- https://www.pexels.com/photo/temple-of-the-tooth-in-kandy-sri-lanka-33404364/
+- https://www.pexels.com/photo/scenic-hillside-view-of-kandy-city-sri-lanka-32861262/
+- https://www.pexels.com/photo/tranquil-lakeside-view-with-island-pavilion-36369846/
