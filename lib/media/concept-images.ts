@@ -17,12 +17,6 @@ export const conceptImages = {
     credit: "Eugene Dorosh / Pexels",
     source: "https://www.pexels.com/photo/aerial-view-of-the-city-739409/",
   },
-  kandyHills: {
-    src: "https://images.pexels.com/photos/32861263/pexels-photo-32861263.jpeg?cs=srgb&dl=pexels-shifna-captures-2153455531-32861263.jpg&fm=jpg",
-    alt: "Green hills and tropical landscape around Kandy, Sri Lanka",
-    credit: "Shifna Captures / Pexels",
-    source: "https://www.pexels.com/photo/aerial-view-of-the-city-739409/",
-  },
   roomPanoramic: {
     src: "https://images.pexels.com/photos/28347470/pexels-photo-28347470.jpeg?cs=srgb&dl=pexels-svh-manali-1801124329-28347470.jpg&fm=jpg",
     alt: "Premium mountain-view hotel bedroom with warm timber finishes",
