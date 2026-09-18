@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { navigation, siteConfig } from "@/lib/site";
 
@@ -10,26 +11,31 @@ export function Footer() {
             <p className="eyebrow">A quieter side of Kandy</p>
             <h2>{siteConfig.shortName}</h2>
           </div>
-          <a className="button button--light" href="#availability">
+          <Link className="button button--light" href="/availability">
             Plan your stay
-          </a>
+          </Link>
         </div>
         <div className="footer__grid">
           <div>
             <p className="footer__label">Explore</p>
             {navigation.map((item) => (
-              <a key={item.href} href={item.href}>
+              <Link key={item.href} href={item.href}>
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
           <div>
-            <p className="footer__label">Contact</p>
-            <p>Contact details will be connected after client verification.</p>
+            <p className="footer__label">Guest help</p>
+            <Link href="/faq">FAQ</Link>
+            <Link href="/contact">Contact</Link>
+            <Link href="/availability">Check availability</Link>
           </div>
           <div>
             <p className="footer__label">Concept status</p>
-            <p>Private sales concept. Property facts and media require client approval before public launch.</p>
+            <p>
+              Private sales concept. Property facts, contact channels and media require client
+              approval before public launch.
+            </p>
           </div>
         </div>
         <div className="footer__bottom">

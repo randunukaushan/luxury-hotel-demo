@@ -1,10 +1,12 @@
+import Link from "next/link";
+
 export function MobileActionBar() {
   return (
     <div className="mobile-action-bar" aria-label="Quick actions">
-      <a href="#stay">Explore stays</a>
-      <a className="mobile-action-bar__primary" href="#availability">
+      <Link href="/stay">Explore stays</Link>
+      <Link className="mobile-action-bar__primary" href="/availability">
         Check availability
-      </a>
+      </Link>
     </div>
   );
 }

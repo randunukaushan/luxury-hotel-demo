@@ -8,8 +8,9 @@ export const siteConfig = {
 
 export const navigation = [
   { label: "Stay", href: "/stay" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Dine", href: "/#dine" },
-  { label: "Gallery", href: "/#gallery" },
-  { label: "Kandy", href: "/#kandy" },
+  { label: "Experience", href: "/experiences" },
+  { label: "Dine", href: "/dining" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Kandy", href: "/kandy" },
+  { label: "Offers", href: "/offers" },
 ] as const;

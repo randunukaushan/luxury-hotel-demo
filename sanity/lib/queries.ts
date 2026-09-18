@@ -40,3 +40,58 @@ export const roomBySlugQuery = defineQuery(`
     "galleryImageUrls": gallery[].asset->url
   }
 `);
+
+export const experiencesQuery = defineQuery(`
+  *[_type == "experience"] | order(title asc) {
+    title,
+    "slug": slug.current,
+    category,
+    summary,
+    verified,
+    "imageUrl": image.asset->url
+  }
+`);
+
+export const diningQuery = defineQuery(`
+  *[_type == "dining"] | order(_createdAt asc) {
+    title,
+    summary,
+    cuisine,
+    openingHours,
+    "imageUrl": image.asset->url
+  }
+`);
+
+export const offersQuery = defineQuery(`
+  *[_type == "offer" && active == true] | order(title asc) {
+    title,
+    "slug": slug.current,
+    summary,
+    conditions
+  }
+`);
+
+export const faqsQuery = defineQuery(`
+  *[_type == "faq"] | order(sortOrder asc, question asc) {
+    question,
+    answer,
+    sortOrder
+  }
+`);
+
+export const galleryQuery = defineQuery(`
+  *[_type == "galleryItem"] | order(sortOrder asc) {
+    alt,
+    category,
+    "imageUrl": image.asset->url
+  }
+`);
+
+export const attractionsQuery = defineQuery(`
+  *[_type == "attraction"] | order(title asc) {
+    title,
+    summary,
+    travelContext,
+    verified
+  }
+`);
