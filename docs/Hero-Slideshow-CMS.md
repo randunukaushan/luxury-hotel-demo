@@ -19,6 +19,7 @@ After Sanity is connected, a published `Hero slideshow` document for a page repl
 The CMS supports:
 
 - Home
+- Experience
 - Dining
 - Gallery
 - Kandy
