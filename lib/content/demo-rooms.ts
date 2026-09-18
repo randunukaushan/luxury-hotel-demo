@@ -1,4 +1,5 @@
 import type { Room } from "@/lib/content/types";
+import { conceptImages } from "@/lib/media/concept-images";
 
 export const demoRooms: Room[] = [
   {
@@ -15,7 +16,8 @@ export const demoRooms: Room[] = [
     view: "Scenic view concept",
     features: ["Landscape-first presentation", "Clear room facts", "Direct enquiry path"],
     amenities: ["Official amenity list pending client confirmation"],
-    galleryImageUrls: [],
+    heroImageUrl: conceptImages.roomPanoramic.src,
+    galleryImageUrls: [conceptImages.roomNature.src, conceptImages.hillLake.src],
     visualTone: "lake",
     isConcept: true,
   },
@@ -33,7 +35,8 @@ export const demoRooms: Room[] = [
     view: "Nature-facing concept",
     features: ["Quiet-luxury layout", "Grouped amenities", "Mobile-first booking actions"],
     amenities: ["Official amenity list pending client confirmation"],
-    galleryImageUrls: [],
+    heroImageUrl: conceptImages.roomNature.src,
+    galleryImageUrls: [conceptImages.roomPanoramic.src, conceptImages.heroTea.src],
     visualTone: "forest",
     isConcept: true,
   },
@@ -51,7 +54,8 @@ export const demoRooms: Room[] = [
     view: "Lake-view concept",
     features: ["Comparison-ready metadata", "Editorial gallery", "Availability CTA"],
     amenities: ["Official amenity list pending client confirmation"],
-    galleryImageUrls: [],
+    heroImageUrl: conceptImages.roomLake.src,
+    galleryImageUrls: [conceptImages.roomPanoramic.src, conceptImages.hillLake.src],
     visualTone: "stone",
     isConcept: true,
   },
