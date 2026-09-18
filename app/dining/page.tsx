@@ -1,7 +1,9 @@
-import { createPageMetadata } from "@/lib/seo/metadata";
+import Image from "next/image";
 import Link from "next/link";
+import { createPageMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/ui/container";
 import { getDining } from "@/lib/content/supporting";
+import { conceptImages } from "@/lib/media/concept-images";
 
 export const metadata = createPageMetadata({
   title: "Dining",
@@ -29,8 +31,15 @@ export default async function DiningPage() {
       <section className="section section--ivory">
         <Container>
           <div className="split-story">
-            <div className="food-concept-art" aria-label="Abstract dining concept visual" role="img">
-              <div className="food-concept-art__plate" />
+            <div className="food-concept-art">
+              <Image
+                className="food-concept-art__image"
+                src={primary?.imageUrl || conceptImages.dining.src}
+                alt={conceptImages.dining.alt}
+                fill
+                sizes="(max-width: 980px) 100vw, 50vw"
+              />
+              <span className="concept-media-label">Concept dining photography</span>
             </div>
             <div className="split-story__copy">
               <p className="eyebrow">The dining story</p>
