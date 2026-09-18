@@ -17,7 +17,7 @@ This repository is the canonical workspace for research, product/design document
 
 **Phase 2 — Implementation in Progress**
 
-The documentation set is complete. The application foundation, design system, homepage, CMS foundation, Stay listing, and dynamic Room Detail routes are implemented and passing CI.
+The documentation set is complete. The application foundation, design system, homepage, CMS foundation, Stay and Room Detail routes, supporting pages, gallery interaction, and availability/contact enquiry flows are implemented and passing CI.
 
 ## 4. Documentation
 
@@ -47,8 +47,8 @@ See `docs/Documentation-Roadmap.md` for the full sequence and status.
 - [x] CMS foundation
 - [x] Homepage vertical slice
 - [x] Stay and room pages
-- [ ] Supporting pages
-- [ ] Availability/contact forms
+- [x] Supporting pages
+- [x] Availability/contact forms
 - [ ] SEO and analytics implementation
 - [ ] Performance/accessibility QA
 - [ ] Client-ready deployment
@@ -98,4 +98,4 @@ Reference sites inform principles only. Do not clone their layouts, copy, or pro
 
 ## 10. Next Step
 
-Continue with **Supporting Pages** — Experiences, Dining, Gallery, Kandy, Offers, FAQ and Contact — then implement the real availability/contact form flow.
+Continue with **SEO and analytics implementation**, followed by performance/accessibility QA and client-ready deployment.
