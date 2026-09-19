@@ -1,13 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { trackEvent } from "@/lib/analytics/events";
 import { navigation, siteConfig } from "@/lib/site";
 
 export function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const isCurrent = (href: string) =>
+    href === "/stay"
+      ? pathname === "/stay" || pathname.startsWith("/stay/")
+      : pathname === href;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
@@ -15,6 +22,10 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -38,7 +49,11 @@ export function Header() {
 
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navigation.map((item) => (
-            <Link key={item.href} href={item.href}>
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isCurrent(item.href) ? "page" : undefined}
+            >
               {item.label}
             </Link>
           ))}
@@ -47,6 +62,7 @@ export function Header() {
         <Link
           className="header-cta"
           href="/availability"
+          aria-current={pathname === "/availability" ? "page" : undefined}
           onClick={() => trackEvent("check_availability_click", { source: "header" })}
         >
           Check availability
@@ -70,7 +86,12 @@ export function Header() {
       <div id="mobile-menu" className={`mobile-menu ${open ? "mobile-menu--open" : ""}`}>
         <nav aria-label="Mobile navigation">
           {navigation.map((item, index) => (
-            <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isCurrent(item.href) ? "page" : undefined}
+              onClick={() => setOpen(false)}
+            >
               <span>0{index + 1}</span>
               {item.label}
             </Link>
@@ -78,6 +99,7 @@ export function Header() {
           <Link
             className="mobile-menu__cta"
             href="/availability"
+            aria-current={pathname === "/availability" ? "page" : undefined}
             onClick={() => {
               trackEvent("check_availability_click", { source: "mobile_menu" });
               setOpen(false);
