@@ -1159,3 +1159,42 @@ textarea { font:inherit; }
     transform: none;
   }
 }
+
+
+/* Final navigation polish */
+.desktop-nav a,
+.mobile-menu nav > a {
+  position: relative;
+}
+
+.desktop-nav a[aria-current="page"] {
+  color: var(--linen);
+}
+
+.desktop-nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -.55rem;
+  height: 1px;
+  background: var(--bronze);
+}
+
+.mobile-menu nav > a[aria-current="page"] {
+  color: var(--linen);
+}
+
+.mobile-menu nav > a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 3.5rem;
+  right: 0;
+  bottom: .65rem;
+  height: 1px;
+  background: rgba(142,100,60,.78);
+}
+
+.header-cta[aria-current="page"] {
+  border-color: var(--bronze);
+}
