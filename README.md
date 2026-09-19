@@ -80,11 +80,17 @@ Current GitHub Actions quality gate passes:
 - ESLint;
 - TypeScript typecheck;
 - production build;
-- production-server smoke tests across the main routes, SEO endpoints, health endpoint, and enquiry validation.
+- tracked-file secret scan;
+- production dependency audit with zero reported production vulnerabilities;
+- production-server smoke tests across the main routes, SEO endpoints, health endpoint, CSP, cross-origin blocking, request-size limits, and enquiry validation.
 
 ### 8.2 Current Demo Safety
 
 Current room categories and visuals are explicitly labelled as concept content where the property has not confirmed definitive room inventory. Unlicensed property photography is not committed.
+
+### 8.3 Security Review
+
+The final code-level security review is recorded in `docs/Security-Review.md`. The production runtime audit currently reports zero vulnerabilities at the configured audit threshold.
 
 ## 9. Working Rules
 
