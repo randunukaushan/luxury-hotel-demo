@@ -2,6 +2,7 @@ import { createPageMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/forms/enquiry-form";
 import { Container } from "@/components/ui/container";
+import { propertyPublicSnapshot } from "@/lib/property-public-snapshot";
 
 export const metadata = createPageMetadata({
   title: "Contact",
@@ -15,10 +16,10 @@ export default function ContactPage() {
       <section className="editorial-hero editorial-hero--forest">
         <Container>
           <p className="eyebrow eyebrow--light">Contact</p>
-          <h1>Make the next step feel personal.</h1>
+          <h1>Plan the next step directly.</h1>
           <p>
-            Verified phone, WhatsApp, email and map details will be added after owner confirmation.
-            The form architecture is ready now.
+            Call the property, view the location, or send a direct enquiry with your preferred dates
+            and questions.
           </p>
         </Container>
       </section>
@@ -30,8 +31,24 @@ export default function ContactPage() {
               <p className="eyebrow">General enquiry</p>
               <h2 className="display-heading">Tell us what you need.</h2>
               <p className="form-page-copy">
-                This private demo validates submissions. Email delivery switches on when the
-                property’s receiving address and secure Resend credentials are configured.
+                {propertyPublicSnapshot.address}
+              </p>
+              <div className="contact-actions">
+                <a className="button button--dark" href={propertyPublicSnapshot.phoneHref}>
+                  Call {propertyPublicSnapshot.phoneDisplay}
+                </a>
+                <a
+                  className="text-link"
+                  href={propertyPublicSnapshot.mapUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View on map <span>↗</span>
+                </a>
+              </div>
+              <p className="contact-meta">
+                Public details checked {propertyPublicSnapshot.checkedAt}. Owner confirmation is
+                required before public launch.
               </p>
               <Link className="text-link" href="/availability">
                 Looking for dates? Check availability <span>↗</span>
