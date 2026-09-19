@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { navigation, siteConfig } from "@/lib/site";
+import { propertyPublicSnapshot } from "@/lib/property-public-snapshot";
 
 export function Footer() {
   return (
@@ -31,16 +32,16 @@ export function Footer() {
             <Link href="/availability">Check availability</Link>
           </div>
           <div>
-            <p className="footer__label">Concept status</p>
-            <p>
-              Private sales concept. Current stock photography is for presentation only and will be
-              replaced with client-approved property media before public launch.
-            </p>
+            <p className="footer__label">Visit & contact</p>
+            <a href={propertyPublicSnapshot.phoneHref}>{propertyPublicSnapshot.phoneDisplay}</a>
+            <a href={propertyPublicSnapshot.mapUrl} target="_blank" rel="noreferrer">
+              {propertyPublicSnapshot.address}
+            </a>
           </div>
         </div>
         <div className="footer__bottom">
           <span>© {new Date().getFullYear()} {siteConfig.name}</span>
-          <span>Premium hospitality website concept</span>
+          <span>Concept preview · unofficial · imagery and details subject to owner approval</span>
         </div>
       </Container>
     </footer>
