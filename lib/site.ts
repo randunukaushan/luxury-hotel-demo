@@ -9,7 +9,7 @@ export const siteConfig = {
   name: "Kandy Victoria Eco Resort",
   shortName: "Kandy Victoria",
   description:
-    "A premium website concept for a peaceful scenic stay near Kandy, Sri Lanka.",
+    "A peaceful scenic stay near Kandy, Sri Lanka, shaped by wide views, calm mornings and warm hospitality.",
   url: configuredUrl.replace(/\/$/, ""),
 } as const;
 
