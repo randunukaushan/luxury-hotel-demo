@@ -1,4 +1,4 @@
-import { createClient } from "next-sanity";
+import { createClient } from "@sanity/client";
 
 export const sanityProjectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID?.trim();
 export const sanityDataset =
@@ -12,5 +12,6 @@ export const sanityClient = isSanityConfigured
       dataset: sanityDataset,
       apiVersion: "2026-09-01",
       useCdn: true,
+      perspective: "published",
     })
   : null;
