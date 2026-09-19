@@ -6,10 +6,11 @@ import { Container } from "@/components/ui/container";
 import { getPageCarousel } from "@/lib/content/carousels";
 import { getRooms } from "@/lib/content/rooms";
 import { conceptImages } from "@/lib/media/concept-images";
+import { propertyPublicSnapshot } from "@/lib/property-public-snapshot";
 
 export const metadata = createPageMetadata({
   title: "Home",
-  description: "A premium scenic-stay website concept for Kandy Victoria Eco Resort.",
+  description: "A peaceful scenic stay near Kandy, Sri Lanka, with wide views, calm mornings and warm hospitality.",
   path: "/",
 });
 
@@ -17,7 +18,7 @@ const stays = [
   {
     number: "01",
     title: "Lake & mountain view stays",
-    detail: "A room-story direction built around verified scenic views and unhurried mornings.",
+    detail: "A calm stay concept shaped around scenic views, unhurried mornings and direct access to the landscape.",
     meta: "Room inventory to be confirmed",
     tone: "stay-card--lake",
     image: conceptImages.roomPanoramic,
@@ -25,7 +26,7 @@ const stays = [
   {
     number: "02",
     title: "Nature-facing suites",
-    detail: "A calmer, greener visual direction designed for guests seeking privacy and a slower pace.",
+    detail: "A greener, quieter stay direction for guests looking for privacy, fresh air and a slower pace.",
     meta: "Final room facts pending client approval",
     tone: "stay-card--forest",
     image: conceptImages.roomNature,
@@ -33,7 +34,7 @@ const stays = [
   {
     number: "03",
     title: "Panoramic room concepts",
-    detail: "Editorial layouts that make views, space and verified room details easy to compare.",
+    detail: "A panoramic stay direction that gives views and space the attention they deserve.",
     meta: "Names and capacities to be verified",
     tone: "stay-card--stone",
     image: conceptImages.roomLake,
@@ -41,10 +42,10 @@ const stays = [
 ];
 
 const principles = [
-  ["Views", "Lake, mountain and garden context become the visual anchor."],
-  ["Calm", "The experience is positioned away from city noise without hiding travel distance."],
-  ["Hospitality", "Real guest proof and clear practical information build confidence."],
-  ["Dining", "Breakfast and food receive the visual weight guests already respond to."],
+  ["Views", "Public guest feedback frequently highlights the surrounding lake and mountain scenery."],
+  ["Calm", "A quieter setting gives the stay a slower rhythm away from the busiest parts of Kandy."],
+  ["Hospitality", "Recent reviews repeatedly mention friendly, attentive service."],
+  ["Dining", "Food and breakfast are recurring positives across public guest feedback."],
 ];
 
 const galleryPreview = [
@@ -76,8 +77,8 @@ export default async function HomePage() {
             Away from the rush.
           </h1>
           <p className="hero__lede">
-            A premium website concept for a peaceful scenic stay near Kandy — shaped by nature,
-            warm hospitality and direct guest connection.
+            A peaceful hill-country stay near Kandy — shaped by wide views, calm mornings and warm
+            hospitality.
           </p>
           <div className="hero__actions">
             <a className="button button--light" href="#availability">
@@ -88,7 +89,7 @@ export default async function HomePage() {
             </a>
           </div>
         </Container>
-        <div className="hero__note">Private concept · stock photography · verified facts only</div>
+        <div className="hero__note">Concept preview · unofficial · details subject to owner confirmation</div>
       </section>
 
       <section id="story" className="section section--ivory story">
@@ -101,14 +102,13 @@ export default async function HomePage() {
             </div>
             <div className="story__copy">
               <p>
-                The strongest version of this property is not a list of amenities. It is the feeling
-                of arriving somewhere calmer, looking across the landscape, and having enough space
-                to slow down.
+                Arrive somewhere quieter, look out across the landscape, and let the pace of the
+                hills take over. Public guest feedback repeatedly highlights the calm setting,
+                scenic views and welcoming service.
               </p>
               <p>
-                This first build turns that verified positioning into an editorial guest journey —
-                then keeps room facts, location context and enquiry actions close when the guest is
-                ready.
+                Kandy is close enough for a day of exploring, while the resort’s setting gives the
+                stay room to feel slower and more private.
               </p>
             </div>
           </div>
@@ -137,8 +137,8 @@ export default async function HomePage() {
               <h2 className="display-heading">Rooms presented as reasons to stay.</h2>
             </div>
             <p className="section-intro">
-              Final names, capacities and amenities stay deliberately unclaimed until the owner
-              confirms the current room inventory.
+              This preview uses concept room labels until the owner confirms the current room names,
+              capacities and amenity details.
             </p>
           </div>
 
@@ -189,6 +189,37 @@ export default async function HomePage() {
         </Container>
       </section>
 
+      <section className="section section--linen review-proof">
+        <Container>
+          <div className="section-heading-row">
+            <div>
+              <p className="eyebrow">Guest proof</p>
+              <h2 className="display-heading">The calm, views and service already have a story.</h2>
+            </div>
+            <p className="section-intro">
+              Public review snapshot checked {propertyPublicSnapshot.checkedAt}. Ratings can change
+              over time.
+            </p>
+          </div>
+
+          <div className="review-proof__grid">
+            {propertyPublicSnapshot.reviewSnapshot.map((item) => (
+              <div className="review-proof__item" key={item.source}>
+                <span>{item.source}</span>
+                <strong>{item.score}</strong>
+                <small>{item.count}</small>
+              </div>
+            ))}
+          </div>
+
+          <div className="review-proof__themes" aria-label="Common guest themes">
+            {propertyPublicSnapshot.guestThemes.map((theme) => (
+              <span key={theme}>{theme}</span>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       <section id="dine" className="section section--ivory dine">
         <Container>
           <div className="dine__grid">
@@ -204,11 +235,11 @@ export default async function HomePage() {
             </div>
             <div className="dine__copy">
               <p className="eyebrow">04 / Dine</p>
-              <h2 className="display-heading">Give breakfast more than an amenity icon.</h2>
+              <h2 className="display-heading">Slow mornings deserve a place at the table.</h2>
               <p>
-                Public guest feedback gives food and breakfast enough weight to deserve their own
-                visual story. The final site will use real dishes, opening hours and dietary details
-                after client confirmation.
+                Breakfast and dining are recurring positives in recent guest feedback. The final
+                version can pair real dishes, service hours and dietary information with the same
+                calm visual story.
               </p>
               <a className="text-link" href="#availability">
                 Ask about the stay <span>↘</span>
@@ -226,8 +257,8 @@ export default async function HomePage() {
               <h2 className="display-heading">Editorial, not a thumbnail wall.</h2>
             </div>
             <p className="section-intro">
-              Licensed stock concept photography shows the intended art direction. Client-owned
-              property photography replaces it before any public launch.
+              A preview of the visual rhythm planned for the final gallery. Property-owned imagery
+              will replace concept photography before public launch.
             </p>
           </div>
 
@@ -256,8 +287,8 @@ export default async function HomePage() {
             </div>
             <div>
               <p className="location__lead">
-                The destination page makes travel context clear instead of pretending the property
-                is a city-centre hotel.
+                Explore Kandy during the day, then return to a quieter setting where the landscape
+                becomes part of the stay.
               </p>
               <div className="location__facts">
                 <span>Honest travel context</span>
@@ -287,8 +318,7 @@ export default async function HomePage() {
               Your stay in the hills begins here.
             </h2>
             <p>
-              Demo conversion shell. Real contact channels and booking logic will be connected only
-              after owner verification.
+              Share your preferred dates and guest details to start a direct availability enquiry.
             </p>
           </div>
           <EnquiryForm
