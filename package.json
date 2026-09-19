@@ -11,7 +11,10 @@
     "smoke": "node scripts/smoke.mjs",
     "validate:production": "node scripts/validate-production.mjs",
     "quality": "npm run lint && npm run typecheck && npm run build",
-    "studio": "sanity dev"
+    "studio": "sanity dev",
+    "audit:prod": "npm audit --omit=dev --audit-level=high",
+    "security:scan": "node scripts/scan-secrets.mjs",
+    "security:check": "npm run security:scan && npm run audit:prod"
   },
   "dependencies": {
     "@sanity/image-url": "2.1.1",
